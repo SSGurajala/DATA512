@@ -8,8 +8,7 @@ import datetime
 #assign acess and output file path variables 
 access = str(sys.argv[1])
 data_dir = str(sys.argv[2])
-output_file_path = str(sys.argv[3])
-csv_file_path = str(sys.argv[4])
+csv_file_path = str(sys.argv[3])
 #read in dataframe
 rare_disease_df = pd.read_csv(data_dir + csv_file_path)
 #assign article titles 
@@ -46,6 +45,7 @@ ARTICLE_PAGEVIEWS_PARAMS_TEMPLATE = {
     "end":         "2024093000"    # this is likely the wrong end date
 }
 
+out_file_path = f"{data_dir}/rare-disease_monthly_{access}_{ARTICLE_PAGEVIEWS_PARAMS_TEMPLATE['start']}-{ARTICLE_PAGEVIEWS_PARAMS_TEMPLATE['end']}.json"
 
 
 def format_url(article_title,
@@ -130,7 +130,6 @@ async def main():
         title, json_obj = response
         if json_obj:
             page_view_res[title] = json_obj['items']
-    out_file_path = data_dir + output_file_path 
     #write file 
     with open(out_file_path, 'w') as file:
         json.dump(page_view_res, file)
