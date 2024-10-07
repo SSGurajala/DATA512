@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "homework-1"
 version = "0.1.0"
-description = ""
+description = "Packages required for homework 1 of DATA 512 Autumn Quarter 2024"
 authors = ["SSGurajala <sgura99@uw.edu>"]
 
 [tool.poetry.dependencies]
