@@ -24,7 +24,7 @@ This project, in the interest of reproducibility, manages required packages and 
 - the pip utility for installing packages 
 
 Once these requirements are fulfilled, install poetry with pip `pip install poetry`, clone this repo, and run
-`poetry install`. All required packages will be installed into the current environment.
+`poetry install` in the base directory of the repo containing the `pyproject.toml` and `poetry.lock` files. All required packages will be installed into the current environment.
 
 Example commands to run data collection and wrangling can be found in the `run_scripts.sh` file in the `libs/src` subdirectory in the repo. If you would like to run these commands as is, you will need to set up the bash environment variables `local_machine_scripts_directory` and `local_machine_data_directory`. These correspond to the scripts and data directory absolute paths in the local machine version of the repo. These environment variables can be set in your current shell through the command:
 `export VARNAME="value"`
