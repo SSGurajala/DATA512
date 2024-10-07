@@ -16,13 +16,13 @@ delete_originals = bool(sys.argv[3] == "True")
 out_access = str(sys.argv[4])
 data_dir = str(sys.argv[5])
 
-#start and end for path strings
-start = "2015070100"
-end = "2024093000"
-
 logging.basicConfig(level=logging.INFO, 
                     format='%(asctime)s - %(levelname)s - %(message)s',
                     filename=f"../../logs/combine_api_results_{access1}_{access2}.log")
+
+#start and end for path strings
+start = "2015070100"
+end = "2024093000"
 
 #format output file path
 out_file_path = f"{data_dir}/rare-disease_monthly_{out_access}_{start}-{end}.json"
@@ -58,9 +58,9 @@ def sum_unique_views_output_dict(merged_json_object):
         })
         #loop through every item in the list of resutls 
         for list_iter in api_result_list:
-            #intialize the timestamp
+            #intialize the timestamp from a list iteration
             timestamp = list_iter['timestamp']
-            #add the views from a given timestamp
+            #add the views from a given timestamp to the view tracker
             view_tracker[timestamp]['views'] += list_iter['views']
             #source other info from the iteration of the list if not already set
             if view_tracker[timestamp]['agent'] is None:
@@ -68,7 +68,7 @@ def sum_unique_views_output_dict(merged_json_object):
                 view_tracker[timestamp]['granularity'] = list_iter['granularity']
                 view_tracker[timestamp]['agent'] = list_iter['agent']
         #add summed monthly entry to high level output dict
-        for timestamp, monthly_entry_info in view_tracker.items():
+        for timestamp in view_tracker.keys():
             result_dict[article].append({
                 'project' :  view_tracker[timestamp]['project'],
                 'article' : article,
@@ -82,9 +82,12 @@ def sum_unique_views_output_dict(merged_json_object):
     return dict(result_dict)
 
 def run_merge(merged_json, delete_originals=False):
+    #run sum_unique_views_output_dict function for the merged json
     output_json = sum_unique_views_output_dict(merged_json)
+    #write output
     with open(out_file_path, 'w') as file:
         json.dump(output_json, file)
+    #delete originals if needed
     if delete_originals:
         os.remove(access1_json_path)
         os.remove(access2_json_path)
