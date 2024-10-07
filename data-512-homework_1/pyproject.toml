@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "homework-1"
+version = "0.1.0"
+description = ""
+authors = ["SSGurajala <sgura99@uw.edu>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+requests = "^2.32.3"
+pandas = "^2.2.3"
+plotly = "^5.24.1"
+kaleido = "0.2.1"
+nbformat = "^5.10.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
