@@ -110,5 +110,5 @@ These visualizations correspond to, respectively:
 
 ## Notes and Considerations
 
-This project initially attempted to access the wikimedia api asynchronously through the python packages [aiohttp](https://docs.aiohttp.org/en/stable/) and [asyncio](https://docs.python.org/3/library/asyncio.html). However, we note for future users that the mobile-web and mobile-app access modes seemed especially sensitive to overload of API calls. This sensitivity resulted in several fail outs of api calls, and resulted in rewrite of the api call with the synchronous requests package. Additionally, the json objects can be difficult to work with and require some handling.
+This project initially attempted to access the wikimedia api asynchronously through the python packages [aiohttp](https://docs.aiohttp.org/en/stable/) and [asyncio](https://docs.python.org/3/library/asyncio.html). However, we note for future users that the mobile-web and mobile-app access modes seemed especially sensitive to overload of API calls. This sensitivity resulted in several fail outs of api calls, and resulted in rewrite of the api call with the synchronous requests package. Some of the titles have a slash, which need to be escaped using the safe parameter in the urllib call in `api_request.py`script. Additionally, the json objects can be difficult to work with and require some handling. 
 
