@@ -6,6 +6,40 @@
 
 The goal of this project is to explore reproducibility and professionalism in data science. To that end, the project involves the following steps: constructing, analyzing, and publishing a dataset of monthly web views from July 1, 2015 to September 30, 2024 for a list of rare disease articles on wikipedia. 
 
+## Repository Structure 
+
+This github has the following structure, generated through a screenshot fed to ChatGPT:
+
+```
+data-512-homework_1/
+	├── data/
+	│	├── schemas/
+	│	│	└── json-schema-rare-disease_monthly_cumulative_2015070100-2024093000.json
+	│	├── rare-disease_cleaned.AUG.2024.csv
+	│	├── rare-disease_monthly_cumulative_2015070100-2024093000.json
+	│	├── rare-disease_monthly_desktop_2015070100-2024093000.json
+	│	└── rare-disease_monthly_mobile_2015070100-2024093000.json
+	├── libs/
+	│	├── notebooks/
+	│	│	├── api_request_documentation.ipynb
+	│	│	├── combine_api_results_documentation.ipynb
+	│	│	├── data_analysis.ipynb
+	│	│	└── wp_article_views_example.ipynb
+	│	└── src/
+	│		├── api_request.py
+	│		├── combine_api_results.py
+	│		└── run_scripts.sh
+	└── imgs/
+		├── fewest10_months_articles_mobile_desktop_plot.png
+		├── max_average_min_average_plot.png
+		└── top10_peak_articles_mobile_desktop_plot.png
+	├── logs/
+	├── LICENSE
+	├── poetry.lock
+	├── pyproject.toml
+	└── README.md
+```
+
 ## Data Source, Documentation, and Licensure 
 
 The source data comes from the Wikimedia API, and terms of use for the wikimedia can be found [here](https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use). 
