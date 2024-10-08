@@ -12,7 +12,7 @@ The source data comes from the Wikimedia API, and terms of use for the wikimedia
 
 Documentation for the wikimedia API can be found [here](https://doc.wikimedia.org/generated-data-platform/aqs/analytics-api/). 
 
-Portions of the source code were sourced from a sample notebook licensed via the [Creative Commons BY](https://creativecommons.org/licenses/by/4.0/). 
+Portions of the source code were sourced from a notebook created by Dr. David W. McDonald for use in DATA 512 licensed via the [Creative Commons BY](https://creativecommons.org/licenses/by/4.0/). The original, unaltered notebook code is located in the `libs/notebooks` directory. 
 
 The list of pages in the `rare-disease_cleaned.AUG.2024.csv` file found in the data subdirectory in this repo was sourced from a rare disease database from the [National Organization of Rare Diseases](https://rarediseases.org/). 
 
