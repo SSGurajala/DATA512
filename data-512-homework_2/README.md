@@ -98,7 +98,7 @@ Intermediate files are:
 
 ## Notes and Considerations
 
-Some API calls may fail for `ores_api_request.py` script. These are recorded in the logging for this script's run. Additionally, some politicians may have more than one entry for country. This results in duplicates for the page info api call script, which are deduplicated prior to merging in the `/src/notebooks/data_wrangling_merge_csvs.ipynb`. Additionally, the per capita counts per region used in the `/src/notebooks/data_analysis.ipynb` are reported regional counts from the original `data/intermediate/population_by_country_AUG.2024.csv` file. However, because countries were lost in mapping the counts per region based on the countries remaining in sample post mapping may differ significantly from these regional counts. Decisions should be made about whether the i
+Some API calls may fail for `ores_api_request.py` script. These are recorded in the logging for this script's run. Additionally, some politicians may have more than one entry for country. This results in duplicates for the page info api call script, which are deduplicated prior to merging in the `/src/notebooks/data_wrangling_merge_csvs.ipynb`. Additionally, the per capita counts per region used in the `/src/notebooks/data_analysis.ipynb` are reported regional counts from the original `data/intermediate/population_by_country_AUG.2024.csv` file. However, because countries were lost in mapping the counts per region based on the countries remaining in sample post mapping may differ significantly from these regional counts. Decisions should be made about whether the in sample countries should be summed to create an "in-sample regional population estimate," or whether the original numbers should be reported.
 
 
 ## Research Implications 
