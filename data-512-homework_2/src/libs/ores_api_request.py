@@ -73,61 +73,68 @@ def make_ores_api_call(article_revid = None,
                         header_params = REQUEST_HEADER_PARAMS_TEMPLATE,
                         request_wait_timing = API_THROTTLE_WAIT):
 
+    #setting parameters based on revid and api key store
     request_data['rev_id'] = article_revid
     header_params['email_address'] = api_key_store.WIKIMEDIA_EMAIL_ADDRESS
     header_params['access_token'] = api_key_store.WIKIMEDIA_ACCESS_TOKEN
-
+    #Raise exceptions in cases where required inputs are missing
     if not article_revid:
-            raise Exception("Must provide a valid article revision ID")
-            logging.info("API Call failed: Valid article revision ID not Provided!")
+        raise Exception("Must provide a valid article revision ID")
+        logging.info("API Call failed: Valid article revision ID not Provided!")
     if not header_params["email_address"]:
         raise Exception("Must provide valid api key store object. Email Address Not Available.")
         logging.info("API Call Failed: Valid API Key Store Object not Provided! Email Address Not Available.")
     if not header_params["access_token"]:
         raise Exception("Must provide valid api key store object. Access Token Not Available.")
         logging.info("API Call Failed: Valid API Key Store Object not Provided! Access Token Not Available.")
-
     # Create a compliant request header from the template and the supplied parameters
     headers = dict()
     for key in header_format.keys():
         headers[str(key)] = header_format[key].format(**header_params)
-
+    #execute the request
     try:
+        #throttling
         time.sleep(request_wait_timing)
+        #run post request to API
         response = requests.post(api_key_store.WIKIMEDIA_ORES_ENDPOINT, headers=headers, data=json.dumps(request_data))
-
-        
+        #raise for status 
         response.raise_for_status()
-
+        #serialize json and log successful response
         json_response = response.json() 
         logging.info(f"ORES API Call for Article Revision ID {article_revid} succeeded!")
 
     except Exception as e:
-
+        #log failure and set response to None
         logging.info(f"ORES API Call for Article Revision ID {article_revid} failed with reason: {e}")
         json_response = None 
 
     return article_revid, json_response
 
 def parse_api_response(api_response_json):
+    #extract scores dictionary
     scores_dict = api_response_json['enwiki']['scores']
+    #extract the key of the scores dictionary
     scores_key = list(scores_dict.keys())[0]
+    #extract prediction field
     prediction = scores_dict[scores_key]['articlequality']['score']['prediction']
     return prediction 
 
 def main(api_key_store=api_key_store,
             csv_file=csv_file,
             out_file=out_file):
-    
+    #list of revids
     revids = csv_file.revision_id.tolist()
     #init response list 
     responses = []
     for revision_id in revids:
+        #append responses for made call
         responses.append(make_ores_api_call(article_revid = int(revision_id),
                                             api_key_store= api_key_store))
     #assign title as keys and items of json obj
     formatted_response_list = []
+    #failure case counter 
     response_failed_count = 0
+    #loop through responses, and add dataframe if response is valid
     for response in responses:
          article_revision_id, json_response = response
          if json_response:
@@ -136,9 +143,10 @@ def main(api_key_store=api_key_store,
                                                          "article_quality" : [prediction]}))
          else:
             response_failed_count += 1
+    #concat formatted dataframes and write to out file
     response_dataframe = pd.concat(formatted_response_list)
     response_dataframe.to_csv(out_file)
-
+    #logging of total time and api calls failed
     end = datetime.datetime.now()
     logging.info(f"This run took {end - start} seconds to complete!")
     logging.info(f"{response_failed_count} api calls failed.")

@@ -52,29 +52,31 @@ def pageinfo_api_call(article_title = None,
                       request_template = PAGEINFO_PARAMS_TEMPLATE,
                       headers = REQUEST_HEADERS,
                       failed_response_counter=0):
-    
-    # article title can be as a parameter to the call or in the request_template
+    #set article title if supplied
     if article_title:
         request_template['titles'] = article_title
-
+    #raise error for no article title
     if not request_template['titles']:
         raise Exception("Must supply an article title to make a pageinfo request.")
         logging.info("API Call failed because valid article title not provided")
 
     # make the request
     try:
-        # we'll wait first, to make sure we don't exceed the limit in the situation where an exception
-        # occurs during the request processing - throttling is always a good practice with a free
-        # data source like Wikipedia - or any other community sources
+        #throttling 
         if API_THROTTLE_WAIT > 0.0:
             time.sleep(API_THROTTLE_WAIT)
+        #make response 
         response = requests.get(endpoint_url, headers=headers, params=request_template)
+        #raise status errors 
         response.raise_for_status()
+        #convert to json and log
         json_response = response.json()
         logging.info(f"API Call succeeded for article titles {article_title}")
     except Exception as e:
+        #log error as needed 
         json_response = None
         logging.info(f"API Call Failed for article titles {article_title} due to error {e}")
+        #update failed response counter
         failed_response_counter += 1
 
     return json_response, failed_response_counter
@@ -83,10 +85,14 @@ def pageinfo_api_call(article_title = None,
 def main(csv_file = csv_file, 
          out_file = out_file, 
          start = start):
+    #initialize list of article titles
     article_titles = csv_file.name
+    #empty list to append to
     df_list = []
+    #failure case counters
     failed_response_counter = 0
     no_rev_id_counter = 0
+    #loop through article titles
     for article in article_titles:
         res, failed_response_counter = pageinfo_api_call(article, failed_response_counter=failed_response_counter)
         key = list(res['query']['pages'].keys())[0]
@@ -97,12 +103,16 @@ def main(csv_file = csv_file,
         else:
             logging.info(f"No revision id available for article {value['title']}!")    
             no_rev_id_counter += 1       
+    #make df
     df = pd.concat(df_list)
+    #write csv
     df.to_csv(out_file, index = False)
+    #logging statements
     logging.info(f"A total of {failed_response_counter} API Calls failed to execute succesfully.")
     logging.info(f"A total of {no_rev_id_counter} articles did not have a revision ID available for the given parameters.")
     end = datetime.datetime.now()
     logging.info(f"Run took {end - start} total seconds!") 
 
+#execute main function
 if __name__ == "__main__":
     main()
