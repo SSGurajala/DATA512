@@ -85,7 +85,7 @@ The final outputs of the scripts and notebooks are located in the `/data/final` 
 - `wp_countries-no_match.txt`: A list of countries which could not be mapped in the file merges occurring in `/src/notebooks/data_wrangling_merge_csvs.ipynb`.
 - `wp_politicians_by_country.csv`: The final csv output of the merges occurring in `/src/notebooks/data_wrangling_merge_csvs.ipynb`.
 
-A mix of intermediate files and initially provided files  `/data/intermediate` subdirectory of this repo.
+A mix of intermediate files and initially provided files are located in the `/data/intermediate` subdirectory of this repo.
 
 Initial files are: 
 - `politicians_by_country_AUG.2024.csv`
