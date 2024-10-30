@@ -1,0 +1,4 @@
+data/USGS_Wildland_Fire_Combined_Dataset.json
+data/Wildland_Fire_Polygon_Metadata.xml
+data/USGS_Wildland_Fire_Combined_Dataset_filtered.json
+logs/*
