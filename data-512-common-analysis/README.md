@@ -4,7 +4,7 @@
 
 ## Goal
 
-The goal of this project is to explore the relationship between wildfire 
+The goal of this project is to explore the relationship between wildfire smoke and air quality index in Dearborn Michigan, as the first step of DATA512's final project.
 
 ## Repository Structure 
 
@@ -18,7 +18,6 @@ data-512-common-analysis
 │   ├── AQI_Dearborn_Michigan.csv
 │   ├── USGS_Wildland_Fire_Combined_Dataset.json
 │   ├── USGS_Wildland_Fire_Combined_Dataset_filtered.json
-│   └── Wildland_Fire_Polygon_Metadata.xml
 ├── imgs
 │   ├── acreage_burned_line_plot.png
 │   ├── aqi_smoke_metric_line_plot.png
@@ -43,107 +42,63 @@ data-512-common-analysis
 
 ## Data Source, Documentation, and Licensure 
 
-The source data comes from the Wikimedia API, and terms of use for the wikimedia can be found [here](https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use). 
+The source data comes from the US geological survey's (USGS) [Combined Wildland Fire Datasets for the US and territories 1800-Present](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81).  
 
-Documentation for the wikimedia API can be found [here](https://doc.wikimedia.org/generated-data-platform/aqs/analytics-api/). 
+Additionally, the AQI data comes from US Environmental Protection Agency (EPA) Air Quality Service (AQS) API. Documentation for this API can be found [here](https://aqs.epa.gov/aqsweb/documents/data_api.html). 
 
-Portions of the source code were sourced from a notebook created by Dr. David W. McDonald for use in DATA 512 licensed via the [Creative Commons BY](https://creativecommons.org/licenses/by/4.0/). The original, unaltered notebook code is located in the `libs/notebooks` directory. 
+Portions of the source code were sourced from notebooks and code created by Dr. David W. McDonald for use in DATA 512 licensed via the [Creative Commons BY](https://creativecommons.org/licenses/by/4.0/). The original, unaltered notebook code is located in the `src/notebooks` directory. 
 
-The list of pages in the `rare-disease_cleaned.AUG.2024.csv` file found in the data subdirectory in this repo was sourced from a rare disease database from the [National Organization of Rare Diseases](https://rarediseases.org/). 
 
-## Getting Started 
+## Data Files and Outputs
 
-This project, in the interest of reproducibility, manages required packages and package versions using the python poetry package, documentation for which can be found [here](https://python-poetry.org/docs/). More thorough information about using poetry can be found at the link provided, but some brief requirements to use poetry for this project are: 
-- some interface for the command line
-- python
-- the pip utility for installing packages 
+The initial dataset file is found from the USGS survey data: `USGS_Wildland_Fire_Combined_Dataset.json`. However, this file is too large to be provided via GitHub and has thus been placed in a .gitignore file for this directory. However, we note that the original file is in geojson format. The official schema for the geojson file type can be found [here](https://geojson.org/schema/GeoJSON.json). 
 
-Once these requirements are fulfilled, install poetry with pip `pip install poetry`, clone this repo, and run
-`poetry install` in the base directory of the repo containing the `pyproject.toml` and `poetry.lock` files. All required packages will be installed into the current environment.
-
-Example commands to run data collection and wrangling can be found in the `run_scripts.sh` file in the `libs/src` subdirectory in the repo. If you would like to run these commands as is, you will need to set up the bash environment variables `local_machine_scripts_directory` and `local_machine_data_directory`. These correspond to the scripts and data directory absolute paths in the local machine version of the repo. These environment variables can be set in your current shell through the command:
-`export VARNAME="value"`
-
-## Code Outputs: Intermediate files and Final Outputs
-
-As is, this project generates three data files from the `api_request.py` script calls. One file, the desktop access api request call, is preserved till the end. The mobile-web and mobile-app access request api call results are both deleted after merging with the `combine_api_results.py` script call. The file names listed below are generated into the data subdirectory of this repo.
-
-Intermediate Data files:
-- `rare-disease_monthly_mobile-app_2015070100-2024093000.json`
-- `rare-disease_monthly-mobile-web_2015070100-2024093000.json`
-
-Final Data Files:
-- `rare-disease_monthly_cumulative_2015070100-2024093000.json`
-- `rare-disease_monthly_desktop_2015070100-2024093000.json`
-- `rare-disease_monthly_mobile_2015070100-2024093000.json`
-
-A sample full JSON Schema for these files can be found in the `/data/schemas` subdirectory. It was generated using the 
-[Smart JSON Schema VS Code Extension](https://marketplace.visualstudio.com/items?itemName=FabianReyes.smart-json-schema). 
-
-The following is an adapted excerpt from said schema, which extends to other files generated by the scripts listed above: 
+This data wrangling and analysis pipeline also produces a final output required for the visualizations: `USGS_Wildland_Fire_Combined_Dataset_filtered.json`. However, this file is also too large to upload to github and has been placed in the .gitignore. This record is simply the subfields of the attributes field of the original geojson file, and also includes a subfield for the distance to Dearborn, MI. A sample record from this file is shown below: 
 
 ```
-{"$schema": "http://json-schema.org/draft-04/schema#",
-  "description": "",
-  "type": "object",
-  "properties": {
-    "Klinefelter syndrome": {
-      "type": "array",
-      "uniqueItems": true,
-      "minItems": 1,
-      "items": {
-        "required": [
-          "project",
-          "article",
-          "granularity",
-          "timestamp",
-          "agent",
-          "views"
-        ],
-        "properties": {
-          "project": {
-            "type": "string",
-            "minLength": 1
-          },
-          "article": {
-            "type": "string",
-            "minLength": 1
-          },
-          "granularity": {
-            "type": "string",
-            "minLength": 1
-          },
-          "timestamp": {
-            "type": "string",
-            "minLength": 1
-          },
-          "agent": {
-            "type": "string",
-            "minLength": 1
-          },
-          "views": {
-            "type": "number"
-          }
-        }
-      }
-    }
-  }
-}
+{'OBJECTID': 13533,
+ 'USGS_Assigned_ID': 13533,
+ 'Assigned_Fire_Type': 'Wildfire',
+ 'Fire_Year': 1961,
+ 'Fire_Polygon_Tier': 1,
+ 'Fire_Attribute_Tiers': '1 (1), 3 (3)',
+ 'GIS_Acres': 13511.581888853605,
+ 'GIS_Hectares': 5467.943194369074,
+ 'Source_Datasets': 'Comb_National_NIFC_Interagency_Fire_Perimeter_History (1), Comb_National_WFDSS_Interagency_Fire_Perimeter_History (1), Comb_National_USFS_Northern_Rockies_1889_2003 (1), Comb_National_USFS_Final_Fire_Perimeter (1)',
+ 'Listed_Fire_Types': 'Wildfire (2), Likely Wildfire (2)',
+ 'Listed_Fire_Names': 'Corn Creek (2), SLEEPING CHILD (1), No Fire Name Provided (1)',
+ 'Listed_Fire_Codes': 'No code provided (4)',
+ 'Listed_Fire_IDs': '',
+ 'Listed_Fire_IRWIN_IDs': '',
+ 'Listed_Fire_Dates': 'Listed Wildfire Discovery Date(s): 1961-07-24 (1) | Listed Other Fire Date(s): 1899-12-30 - REVDATE field (1)',
+ 'Listed_Fire_Causes': '',
+ 'Listed_Fire_Cause_Class': 'Undetermined (4)',
+ 'Listed_Rx_Reported_Acres': None,
+ 'Listed_Map_Digitize_Methods': 'Digitized Other (1)',
+ 'Listed_Notes': '1 death heart attack, 1 died in vehicle accident off forest (2)',
+ 'Processing_Notes': '',
+ 'Wildfire_Notice': 'Wildfire mapping prior to 1984 was inconsistent, infrequent, and done without the aid of more modern fire mapping methods (GPS and satellite imagery). Areas burned prior to 1984 in this dataset represent only a fraction of what actually burned. While areas burned on or after 1984 are much more accurate and complete, errors still can and do occur. This dataset represents the most complete set of digitized polygon fire data available to the public that we, the authors, were able to collect. It is not a complete collection of all wildfires burned during the time period it represents.',
+ 'Prescribed_Burn_Notice': 'Prescribed fire data in this dataset represents only a fraction of the area burned in prescribed burns across all years due to lack of reporting, particularly on private lands. The missing prescribed burn data becomes more pronounced further back in time, particularly in the southeastern U.S.; however, errors and omissions still occur through the most recent years in this dataset. This dataset represents the most complete set of digitized polygon fire data available to the public that we, the authors, were able to collect. It is not a complete collection of all prescribed burns burned during the time period it represents.',
+ 'Wildfire_and_Rx_Flag': None,
+ 'Overlap_Within_1_or_2_Flag': None,
+ 'Circleness_Scale': 0.4089354302200108,
+ 'Circle_Flag': None,
+ 'Exclude_From_Summary_Rasters': 'No',
+ 'Shape_Length': 40991.098725516786,
+ 'Shape_Area': 54679431.94369074,
+ 'Distance_to_DearbornMI': 1572.827171297372}
 ```
 
-These json files have keys corresponding to the article title, with the value being an array of dictionaries each of which correspond to monthly api results for that article. 
-
-Additionally, the `data_analysis.ipynb` notebook in `libs/notebooks` generates image files corresponding to the visualization asks for the project in the `imgs` subdirectory of the repo. The image files are as follows:
-- `max_average_min_average_plot.png`
-- `top10_peak_articles_mobile_desktop_plot.png`
-- `fewest10_months_articles_mobile_desktop_plot.png`
-
-These visualizations correspond to, respectively:
-- The maximum and minimum articles by average view across desktop and mobile access modes.
-- The Top 10 articles by peak view count across desktop and mobile access modes.
-- The 10 articles with fewest monthly data entries across desktop and mobile access modes. 
-
-## Notes and Considerations
-
-This project initially attempted to access the wikimedia api asynchronously through the python packages [aiohttp](https://docs.aiohttp.org/en/stable/) and [asyncio](https://docs.python.org/3/library/asyncio.html). However, we note for future users that the mobile-web and mobile-app access modes seemed especially sensitive to overload of API calls. This sensitivity resulted in several fail outs of api calls, and resulted in rewrite of the api call with the synchronous requests package. Some of the titles have a slash, which need to be escaped using the safe parameter in the urllib call in `api_request.py`script. Additionally, the json objects can be difficult to work with and require some handling. 
-
+Another final output from this script is the included `data/AQI_Dearborn_Michigan.csv` file containing the output of the API Calls. This file contains the date, the maximum average AQI for a given parameter for that date, and the year corresponding to the date. The head output of this csv is as follows:
+```
+date,aqi,year
+2021-05-01,42.5,2021
+2021-05-02,54.5,2021
+2021-05-03,45.0,2021
+2021-05-04,44.294117647058826,2021
+2021-05-05,36.0,2021
+2021-05-06,42.5,2021
+2021-05-07,42.8125,2021
+2021-05-08,32.0,2021
+2021-05-09,33.5,2021
+```

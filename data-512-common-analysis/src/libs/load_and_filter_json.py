@@ -20,15 +20,6 @@ OUT_FILE = "data/USGS_Wildland_Fire_Combined_Dataset_filtered.json"
 #coords of dearborn MI
 coords = [42.322262, -83.176315]
 
-#Extract month from fire date 
-def extract_month_discovery_date(fire_date_text):
-    #check for whether Discovery Date is in fire date text, and extract month
-    match = re.search(r'(?<=Listed Wildfire Discovery Date\(s\): \d{4}-)(\d{2})(?=-\d{2} \(1\))', fire_date_text)
-    if match:
-        month = match.group(1)
-    else:
-        month = None
-    return month
 
 def load_and_filter_year_geojson(feature, coords = coords):
     """
