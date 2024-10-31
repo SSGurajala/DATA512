@@ -12,12 +12,13 @@ This github has the following structure, generated through the tree command in l
 
 ```
 data-512-common-analysis
+├── CommonAnalysisReflection.pdf
 ├── LICENSE
 ├── README.md
 ├── data
 │   ├── AQI_Dearborn_Michigan.csv
 │   ├── USGS_Wildland_Fire_Combined_Dataset.json
-│   ├── USGS_Wildland_Fire_Combined_Dataset_filtered.json
+│   └── USGS_Wildland_Fire_Combined_Dataset_filtered.json
 ├── imgs
 │   ├── acreage_burned_line_plot.png
 │   ├── aqi_smoke_metric_line_plot.png
@@ -102,3 +103,11 @@ date,aqi,year
 2021-05-08,32.0,2021
 2021-05-09,33.5,2021
 ```
+
+## Notes and Considerations
+
+The original GeoJSON file `USGS_Wildland_Fire_Combined_Dataset_filtered.json` comes compressed from the link provided. The file itself is very large, so anyone trying reproduce this analysis should be aware that several gigabytes of free storage will be required. Some decisions have to be made in filtering this file. The GeoJSON file has a "Listed_Fire_Date" column, but this column is unreliable in terms of accurately describing the date. We decided to only filter the fire year, and rely on the AQI API to define fire season. Using the AQI API itself is mostly self-explanatory, but can be much slower if not on networks with high bandwidth. The API calls take about two minutes per param set, and in total took 2 hours and 50 minutes to run on my local machine. A good option is to set up a linux functionality like [caffeine](https://pypi.org/project/caffeine/) to ensure the API calls run from the command line without the machine falling asleep. Running on a virtual machine is also likely a good option. 
+
+Some environment variables are required to run these scripts:
+"DATA512_BASE_FILE_PATH" should be set to a higher level directory housing the DATA512 directory. 
+"EPA_AQI_API_KEY" should consist of your API key for the AQI API, with "EPA_AQI_API_USERNAME" consisting of your registered username for the AQI API. This [command](https://docs.conda.io/projects/conda/en/latest/commands/env/config/vars/set.html) in conda will help set these variables. Also, the log files were included in the .gitignore as they were too large.
