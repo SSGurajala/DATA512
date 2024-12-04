@@ -45,7 +45,7 @@ This data is sourced from multiple sources:
 - The wildfire data is sourced from the US geological survey's (USGS) [Combined Wildland Fire Datasets for the US and territories 1800-Present](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81). 
 - The climate and precipitation data is sourced from the National Oceanic and Atmospheric Administration's (NOAA) National Center for Environmental Information (NCEI) [Climate at a Glance](https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/) web-service.
 - The chronic respiratory disease data is sourced from the Institute for Health Metrics and Evaluation's [Global Disease Burden Study](https://www.healthdata.org/research-analysis/gbd).
-- The air quality data is sourced from the US Environmental Protection Agency (EPA) Air Quality Service (AQS) API. Documentation for this API can be found [here](https://aqs.epa.gov/aqsweb/documents/data_api.html). 
+- The air quality data is sourced from the US Environmental Protection Agency (EPA) Air Quality Service (AQS) API. Documentation for this API can be found [here](https://aqs.epa.gov/aqsweb/documents/data_api.html).
 
 Parsing and obtaining the wildland fire data and the air quality data was conducted in previous work. The repo housing the code and procedures for this can be found [here](https://github.com/SSGurajala/DATA512/tree/main/data-512-common-analysis). 
 
