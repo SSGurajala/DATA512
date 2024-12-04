@@ -71,6 +71,7 @@ Wrangling the data has resulted in the following final data files:
 
 
 The fields of this dataframe are as follows:
+
 1. 
 FireType:
 Type: String or Object
@@ -99,6 +100,7 @@ Description: The distance in miles from the location of the fire to Dearborn, Mi
 |  4 |   1984 |                      0.2475  |           48.5    |             2.32083 |
 
 The fields of this dataframe are as follows:
+
 1.
 Year:
 Type: Integer.
@@ -128,6 +130,7 @@ Description: Indicates the average precipitation  recorded for the year.
 |  4 |   1994 | Incidence | 228423 |
 
 The fields of this dataframe are as follows:
+
 1.
 year:
 Type: Integer.
@@ -153,6 +156,7 @@ Description: The value associated with the measure, representing the count of ne
 |  4 | 2021-05-05 | 36      |   2021 |
 
 The fields of this dataframe are as follows: 
+
 1. 
 date:
 Type: datettime object
