@@ -72,22 +72,10 @@ Wrangling the data has resulted in the following final data files:
 
 The fields of this dataframe are as follows:
 
-1. 
-FireType:
-Type: String or Object
-Description: Indicates the type of fire, and selections include Wildfire or Prescribed Burn. 
-2.
-Year:
-Type: Integer.
-Description: The calendar year when the fire occurred.
-3.
-Acreage:
-Type: Float.
-Description: Represents the size of the area burned by the wildfire in acres.
-4.
-Distance_to_Dearborn:
-Type: Float.
-Description: The distance in miles from the location of the fire to Dearborn, Michigan. 
+1. FireType: Type: String or Object Description: Indicates the type of fire, and selections include Wildfire or Prescribed Burn. 
+2. Year: Type: Integer. Description: The calendar year when the fire occurred.
+3. Acreage: Type: Float. Description: Represents the size of the area burned by the wildfire in acres.
+4. Distance_to_Dearborn: Type: Float. Description: The distance in miles from the location of the fire to Dearborn, Michigan. 
 
 -[ncei_cleaned_final.csv](data-512-final-project/data/final/ncei_cleaned_final.csv): The following is the output of the head command on this file. 
 
@@ -101,22 +89,10 @@ Description: The distance in miles from the location of the fire to Dearborn, Mi
 
 The fields of this dataframe are as follows:
 
-1.
-Year:
-Type: Integer.
-Description: Indicates the calendar year for which the data is recorded.
-2.
-avg_Drought_Severity_Index:
-Type: Float.
-Description: Represents the average palmer drought severity index for the year.
-3.
-avg_Temperature:
-Type: Float.
-Description: Reflects the average temperature recorded for the year.
-4.
-avg_Precipitation:
-Type: Float.
-Description: Indicates the average precipitation  recorded for the year.
+1. Year: Type: Integer. Description: Indicates the calendar year for which the data is recorded.
+2. avg_Drought_Severity_Index: Type: Float. Description: Represents the average palmer drought severity index for the year.
+3. avg_Temperature: Type: Float. Description: Reflects the average temperature recorded for the year.
+4. avg_Precipitation: Type: Float. Description: Indicates the average precipitation  recorded for the year.
 
 
 -[gbd_aggregated_death_metric_per_year.csv](data-512-final-project/data/final/gbd_aggregated_death_metric_per_year.csv) and [gbd_aggregated_incidence_metric_per_year.csv](data-512-final-project/data/final/gbd_aggregated_incidence_metric_per_year.csv). These files are similarly structured, and are both from the GBD dataset. The following is the output of the head command for the incidence metric per year file. 
@@ -131,18 +107,9 @@ Description: Indicates the average precipitation  recorded for the year.
 
 The fields of this dataframe are as follows:
 
-1.
-year:
-Type: Integer.
-Description: Represents the calendar year in which the data point was recorded.
-2.
-measure:
-Type: String or Object. 
-Description: Describes the type of data being reported. Incidence indicates the number of new cases for a particular condition or event. In this case it describes the number of new chronic respiratory disease cases.
-3. 
-val:
-Type: Integer or numeric.
-Description: The value associated with the measure, representing the count of new cases (incidence) for the respective year.
+1. year: Type: Integer. Description: Represents the calendar year in which the data point was recorded.
+2. measure: Type: String or Object. Description: Describes the type of data being reported. Incidence indicates the number of new cases for a particular condition or event. In this case it describes the number of new chronic respiratory disease cases.
+3. val: Type: Integer or numeric. Description: The value associated with the measure, representing the count of new cases (incidence) for the respective year.
 
 
 -[AQI_Dearborn_Michigan.csv](data-512-final-project/data/final/AQI_Dearborn_Michigan.csv). The following is the output from the head command of the file:
@@ -157,20 +124,9 @@ Description: The value associated with the measure, representing the count of ne
 
 The fields of this dataframe are as follows: 
 
-1. 
-date:
-Type: datettime object
-Description: Represents a specific calendar date in YYYY-MM-DD format.
-
-2.
-aqi:
-Type: Float or numeric.
-Description: Represents the Air Quality Index (AQI) on the corresponding date. AQI measures air quality, with lower values indicating better air quality.
-
-3. 
-year:
-Type: Integer.
-Description: Denotes the calendar year in which the observation was recorded (all 2021 in this case).
+1. date: Type: datettime object Description: Represents a specific calendar date in YYYY-MM-DD format.
+2. aqi: Type: Float or numeric. Description: Represents the Air Quality Index (AQI) on the corresponding date. AQI measures air quality, with lower values indicating better air quality.
+3. year: Type: Integer. Description: Denotes the calendar year in which the observation was recorded (all 2021 in this case).
 
 ## Methods 
 
