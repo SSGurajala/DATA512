@@ -59,7 +59,7 @@ Two sets of files are unable to be shared in this repo:
 
 Wrangling the data has resulted in the following final data files:
 
--[USGS_wildfire_dearborn_filtered.csv](data-512-final-project/data/final/USGS_wildfire_dearborn_filtered.csv): The following is the output of the head command on this file. 
+-[USGS_wildfire_dearborn_filtered.csv](data/final/USGS_wildfire_dearborn_filtered.csv): The following is the output of the head command on this file. 
 
 |    | FireType   |   Year |   Acreage |   Distance_to_Dearborn |
 |---:|:-----------|-------:|----------:|-----------------------:|
@@ -77,7 +77,7 @@ The fields of this dataframe are as follows:
 3. Acreage: Type: Float. Description: Represents the size of the area burned by the wildfire in acres.
 4. Distance_to_Dearborn: Type: Float. Description: The distance in miles from the location of the fire to Dearborn, Michigan. 
 
--[ncei_cleaned_final.csv](data-512-final-project/data/final/ncei_cleaned_final.csv): The following is the output of the head command on this file. 
+-[ncei_cleaned_final.csv](data/final/ncei_cleaned_final.csv): The following is the output of the head command on this file. 
 
 |    |   Year |   avg_Drought_Severity_Index |   avg_Temperature |   avg_Precipitation |
 |---:|-------:|-----------------------------:|------------------:|--------------------:|
@@ -95,7 +95,7 @@ The fields of this dataframe are as follows:
 4. avg_Precipitation: Type: Float. Description: Indicates the average precipitation  recorded for the year.
 
 
--[gbd_aggregated_death_metric_per_year.csv](data-512-final-project/data/final/gbd_aggregated_death_metric_per_year.csv) and [gbd_aggregated_incidence_metric_per_year.csv](data-512-final-project/data/final/gbd_aggregated_incidence_metric_per_year.csv). These files are similarly structured, and are both from the GBD dataset. The following is the output of the head command for the incidence metric per year file. 
+-[gbd_aggregated_death_metric_per_year.csv](data/final/gbd_aggregated_death_metric_per_year.csv) and [gbd_aggregated_incidence_metric_per_year.csv](data/final/gbd_aggregated_incidence_metric_per_year.csv). These files are similarly structured, and are both from the GBD dataset. The following is the output of the head command for the incidence metric per year file. 
 
 |    |   year | measure   |    val |
 |---:|-------:|:----------|-------:|
@@ -112,7 +112,7 @@ The fields of this dataframe are as follows:
 3. val: Type: Integer or numeric. Description: The value associated with the measure, representing the count of new cases (incidence) for the respective year.
 
 
--[AQI_Dearborn_Michigan.csv](data-512-final-project/data/final/AQI_Dearborn_Michigan.csv). The following is the output from the head command of the file:
+-[AQI_Dearborn_Michigan.csv](data/final/AQI_Dearborn_Michigan.csv). The following is the output from the head command of the file:
 
 |    | date       |     aqi |   year |
 |---:|:-----------|--------:|-------:|
