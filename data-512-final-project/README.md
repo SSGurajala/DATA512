@@ -124,7 +124,7 @@ The fields of this dataframe are as follows:
 
 The fields of this dataframe are as follows: 
 
-1. date: Type: datettime object Description: Represents a specific calendar date in YYYY-MM-DD format.
+1. date: Type: datetime object Description: Represents a specific calendar date in YYYY-MM-DD format.
 2. aqi: Type: Float or numeric. Description: Represents the Air Quality Index (AQI) on the corresponding date. AQI measures air quality, with lower values indicating better air quality.
 3. year: Type: Integer. Description: Denotes the calendar year in which the observation was recorded (all 2021 in this case).
 
