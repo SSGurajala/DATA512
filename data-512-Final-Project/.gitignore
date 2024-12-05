@@ -1,0 +1,4 @@
+data/raw/USGS_Wildland_Fire_Combined_Dataset_filtered.json
+data/raw/IHME-GBD_2021_DATA-5c7069d7-1.csv
+data/final/gbd_aggregated_incidence_metric_per_year.csv
+data/final/gbd_aggregated_death_metric_per_year.csv
